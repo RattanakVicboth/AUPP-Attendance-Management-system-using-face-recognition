@@ -1,0 +1,955 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header container styling */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.logo {
+    width: 210px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 35px;
+}
+.header-text {
+    flex: 1;
+    text-align: center;
+    padding-right: 180px; 
+}
+header {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1c42a2, #0E1E47, #000000);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: -20px; 
+    margin-bottom: -15px; 
+}
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    letter-spacing: 1px;
+}
+.header-social-icons {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+.header-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 4px 12px #1c42a2; 
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.header-social-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+}
+.header-social-icon:hover {
+    transform: scale(1.1);
+    background: #3f4851;
+}
+nav {
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: -45px; /* Move nav up visually */
+    z-index: 10; /* Ensure it's above background or hero if needed */
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 18px; /* Ensure font size matches */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+nav a:hover, nav a.active {
+    background-color: #1c246b; /* Highlight active page */
+    border-radius: 5px;
+}
+.home .hero {
+    background: url('../images/aupp.png') no-repeat center center/cover;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+.home .hero-overlay {
+    background: rgb(8,31,74); 
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgb(255, 255, 255); 
+    max-width: 600px; /* Prevents it from stretching too wide */
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+.hero-overlay p {
+    padding-top: 15px;
+    color: #b0b7ec;
+}
+.home .cta-button {
+    display: inline-block;
+    background: #ffffff;
+    color: #00337c;
+    padding: 12px 24px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2; /* Ensures button stays on top */
+    pointer-events: auto;
+    margin-top: 20px;
+}
+.home .cta-button:hover {
+    background: #339846;
+    color: #ffffff;
+}
+.home main {
+    
+    max-width: 1200px; 
+    margin: 0 auto;
+    background: white; 
+    padding-left: 35px; 
+    padding-right: 35px; 
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+.home h2 {
+    padding-top: 20px;
+    font-size: 2rem; 
+    font-weight: 700; 
+    color: #2C3E50; 
+    text-align: center; 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+    position: relative; 
+}
+.home h2::before {
+    content: ''; 
+    position: absolute; 
+    bottom: -10px; /* Positions the line just below the heading */
+    left: 0;
+    width: 50%;
+    height: 3px; /* Line thickness */
+    background-color: #0e3994; /* Adds a blue line */
+    border-radius: 5px; /* Rounds the edges of the line */
+}
+.home .content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 15px 20px;
+}
+.home .card {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    width: 320px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+.home .card:hover {
+    transform: translateY(-10px);
+}
+.home .card h3 {
+    color: #00337c;
+    font-size: 1.5em;
+}
+.home .card p {
+    font-size: 1.1em;
+    color: #333;
+}
+.home .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+.home .gallery img {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+.home .gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.home .gallery .caption {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    margin-top: 8px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+#contact {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+#contact h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+#contact h2::after,
+#contact h2::before {
+  display: none; /* Hide any pseudo-elements that might be creating the line */
+}
+.contact-details p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+}
+.contact-details .email-link {
+    color: #14337c;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+.contact-details .email-link:hover {
+    text-decoration: underline;
+}
+.social-icons {
+    margin-top: 20px;
+}
+.social-icons .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 0 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+.social-icons .social-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+.social-icons .social-icon:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+footer {
+    
+    font-size: 1rem;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+}
+footer p {
+    margin: 0;
+}
+
+/* Membership Section */
+.hero {
+    background-image: url('../images/attendance.png');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+.cta-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.cta-button:hover {
+    background-color: #45a049;
+}
+.features {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+.features h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.feature-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.feature-card:hover {
+    transform: scale(1.05);
+}
+.feature-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+#members h2 {
+    font-size: 2.4rem; 
+    font-weight: 600; 
+    text-align: center; 
+    color: #333;
+    margin-top: 15px;
+    letter-spacing: 1px; 
+    text-transform: capitalize; 
+    padding: 0 10px; 
+    margin-top: 50px;
+}
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+    gap: 20px;
+    padding: 20px;
+    justify-items: center; 
+    align-items: center; 
+    width: 100%;
+    max-width: 1295px; 
+    margin: 0 auto; 
+}
+.member-card {
+    background-color: #f4f7fb;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; 
+    max-width: 300px; 
+    box-sizing: border-box; 
+    height: 315px;
+    margin-left: 320px;
+}
+.member-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: block; /* Ensure image is a block element */
+    margin-left: auto;
+    margin-right: auto; /* Center image horizontally */
+}
+.member-grid .member-card:nth-child(3) .member-img {
+    /* Match the size of other member images */
+    width: 120px;
+    height: 120px;
+  
+    /* Keep the black background */
+    background-color: black;
+  
+    /* Maintain circular shape */
+    border-radius: 50%;
+  
+    /* Control how the image fits within the container */
+    object-fit: cover;
+    object-position: center;
+  
+    /* Keep the same margin as other images */
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  
+    /* Remove any padding */
+    padding: 0;
+  
+    /* Ensure proper box-sizing */
+    box-sizing: border-box;
+  
+    /* Remove the max-width and max-height that were causing issues */
+    max-width: none;
+    max-height: none;
+  
+    /* Optional: keep the border if desired */
+    /* border: 2px solid black; */
+}
+
+/* Attendance Section */
+#attendance {
+    background-color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+#attendance h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.cta-container {
+    margin-top: 20px;
+}
+.cta-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.cta-button:hover {
+    background-color: #45a049;
+}
+#testimonials {
+    background-color: #f9f9f9; 
+    padding: 40px 20px; 
+    text-align: center; 
+    margin-top: 50px;
+}
+#testimonials h2 {
+    font-size: 2rem; 
+    margin-bottom: 20px; 
+    font-weight: 600; 
+    color: #333; 
+}
+.testimonial-container {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(2, 1fr); /* 2 boxes per row */
+    gap: 20px; /* Space between the testimonial boxes */
+    padding: 0 20px; /* Padding on left and right */
+    justify-items: center; /* Center-align the items in the grid */
+}
+.testimonial {
+    background-color: #fff; 
+    border-radius: 8px; 
+    padding: 20px; 
+    margin: 20px auto; 
+    max-width: 500px;
+    text-align: center; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.testimonial p {
+    font-size: 1rem; 
+    line-height: 1.6; 
+    margin-bottom: 15px; 
+    color: #666;
+}.testimonial .author {
+    font-size: 1.1rem; 
+    font-weight: 500;
+    color: #333; 
+    margin-top: 10px; 
+}
+
+/* Footer */
+footer {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Push footer to bottom */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer p {
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links a {
+    color: #4CAF50;
+    margin: 0 10px;
+    text-decoration: none;
+}
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Membership Section */
+#membership {
+    text-align: center;
+    padding: 50px 0;
+}
+.members-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.card {
+    width: 250px; /* Adjust card width */
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.card img {
+    width: 100%;
+    max-width: 150px; /* Resize image */
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 15px;
+}
+#attendance {
+    background: #0b1587;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 40px auto;
+    max-width: 900px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(10px);
+    transition: transform 0.3s ease-in-out;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+}
+#attendance:hover {
+    transform: translateY(0px);
+}
+#attendance h2 {
+    font-size: 2.8em;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+#attendance p {
+    color: white;
+    font-size: 1em;
+}
+.attendance-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.attendance-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 1.1em;
+}
+.attendance-table th {
+    background: #00337c;
+    color: white;
+    font-weight: bold;
+}
+.attendance-table tbody tr:nth-child(even) {
+    background: #f2f2f2;
+}
+.attendance-table tbody tr:hover {
+    background: #f1c40f;
+    color: white;
+    transition: 0.3s;
+}
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+.card h3 {
+    color: #00337c;
+    font-size: 1.5em;
+}
+.card p {
+    font-size: 1.1em;
+    color: #333;
+}
+.card button {
+    background-color: #00337c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.card button:hover {
+    background-color: #f1c40f;
+}
+
+/* Registration section */
+.registration {
+    background: linear-gradient(to bottom, #ffffff, #b8d4ff);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-bottom: 25px;
+}
+.registration .form-container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    max-width: 90%;
+    font-size: 1.1em;
+    margin: 0 auto;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 40px;
+}
+.form-subtitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #1a4e63;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.registration h2 {
+    text-align: center;
+    color: #00337c;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+.registration p {
+    text-align: left;
+    margin-bottom: -15px;
+    color: #333;
+    font-size: 1.1em;
+}
+.registration .terms-main-title {
+    text-align: center;
+}
+.registration label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+    color: #333;
+    font-size: 1.1em;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.phone-container {
+    display: flex;
+    align-items: center;
+}
+.phone-prefix {
+    font-size: 16px;
+    color: black;
+    padding-right: 5px;
+}
+input::placeholder {
+    color: lightgray; /* Light grey color for placeholders */
+    font-style: italic;
+}
+input:focus::placeholder {
+    color: transparent; /* Make placeholder invisible when typing */
+}
+input:focus {
+    border-color: #007bff; /* Focus border color */
+    outline: none; /* Remove outline */
+}
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+.error-message {
+    color: #ff0000;
+    font-size: 0.875em;
+    margin-top: 5px;
+    padding: 5px 0;
+    font-weight: bold;
+}
+input.invalid {
+    border: 2px solid #ff0000;
+}
+.registration input, .registration select, .registration textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1.1em;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+.registration input:focus, .registration select:focus, .registration textarea:focus {
+    border-color: #00337c;
+    outline: none;
+}
+.registration .terms {
+    margin-top: 15px;
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+}
+.registration .submit-btn {
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+.registration .submit-btn:hover {
+    background-color: #005ea6;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .registration .form-container {
+        padding: 25px;
+    }
+
+    .registration h2 {
+        font-size: 2em;
+    }
+
+    .registration label, .registration input, .registration select, .registration textarea {
+        font-size: 1em;
+    }
+
+    .registration .submit-btn {
+        font-size: 1.1em;
+    }
+}
+
+/* FAQ Section */
+.faq-container {
+    max-width: 700px; /* Reduce from 800px to 700px */
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-container,
+main {
+  flex: 1; /* Make content area grow to push footer down*/
+}
+
+.faq-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 30px; /* Reduce padding to make items closer together */
+}
+.faq-question {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #00337c;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between; /* This pushes the + icon to the right */
+    align-items: center;
+    padding: 15px 0; /* Add some vertical padding */
+}
+.faq-question span {
+    margin-left: 10px; /* Reduce space between text and icon */
+    font-weight: bold;
+    color: #00337c;
+}
+  
+.faq-answer {
+    display: none;
+    font-size: 1em;
+    color: #333;
+    padding: 0 0 15px 0; /* Add bottom padding only */
+    line-height: 1.5;
+}
+.faq-question:hover {
+    color: #00337c;
+}
+
+.faq-answer.show {
+    display: block;
+}
+
+
+/* Admin Login Modal (Better Design) */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* dark background */
+    backdrop-filter: blur(3px); /* light blur */
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    width: 320px;
+    text-align: center;
+  }
+  
+  .modal-content h2 {
+    font-size: 1.8rem;
+    color: #00337c;
+    margin-bottom: 10px;
+  }
+  
+  .modal-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .modal-content input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  
+  .modal-content input:focus {
+    outline: none;
+    border-color: #00337c;
+  }
+  
+  .modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .modal-buttons button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-buttons button:first-child {
+    background-color: #d1d5db; /* Light grey for Back */
+    color: #333;
+  }
+  
+  .modal-buttons button:first-child:hover {
+    background-color: #b0b7c3;
+  }
+  
+  .modal-buttons button:last-child {
+    background-color: #00337c; /* Blue for Login */
+    color: white;
+  }
+  
+  .modal-buttons button:last-child:hover {
+    background-color: #1c42a2;
+  }
+  
+  #loginError {
+    margin-top: 15px;
+    color: #e74c3c;
+    font-size: 0.9em;
+    display: none;
+  }
+  

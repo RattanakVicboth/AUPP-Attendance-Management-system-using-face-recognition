@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUPP Badminton Club Registration</title>
+
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+  >
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/upload.js') }}" defer></script>
+</head>
+
+<body>
+  <div class="registration">
+    <header>
+      <div class="header-container">
+        <!-- Logo -->
+        <img
+          src="{{ url_for('static', filename='images/logo1.png') }}"
+          alt="AUPP Badminton Club Logo"
+          class="logo"
+        >
+        <div class="header-text">
+          <h1>Registration</h1>
+        </div>
+
+        <!-- Social icons -->
+        <div class="header-social-icons">
+          <a href="#" class="header-social-icon">
+            <img
+              src="{{ url_for('static', filename='images/facebook.png') }}"
+              alt="Facebook"
+            >
+          </a>
+          <a href="#" class="header-social-icon">
+            <img
+              src="{{ url_for('static', filename='images/instagram.png') }}"
+              alt="Instagram"
+            >
+          </a>
+          <a href="#" class="header-social-icon">
+            <img
+              src="{{ url_for('static', filename='images/telegram.png') }}"
+              alt="Telegram"
+            >
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="main-nav">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('membership') }}">Membership</a>
+        <a href="{{ url_for('register_page') }}" class="active">Register</a>
+        <a href="{{ url_for('faq') }}">FAQ</a>
+      </nav>
+    </header>
+
+    <div class="form-container">
+        <h2>AUPP Badminton Club (Spring 2025)</h2>
+        <p class="form-subtitle">📝 Registration Form</p>
+      
+        <!-- Form posts to Flask registration endpoint -->
+        <form
+          id="registration-form"
+          action="{{ url_for('api_register') }}"
+          method="post"
+          enctype="multipart/form-data"
+          novalidate
+        >
+          <!-- Name -->
+          <label for="name">Name *</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="John Doe"
+            required
+          >
+          <span class="error-message" id="name-error"></span>
+      
+          <!-- Student ID -->
+          <label for="student_id">Student ID *</label>
+          <input
+            type="text"
+            id="student_id"
+            name="student_id"
+            placeholder="2022XXXX"
+            required
+          >
+          <span class="error-message" id="id-error"></span>
+      
+          <!-- Email -->
+          <label for="email">Email (AUPP) *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="doe2@aupp.edu.kh"
+            required
+          >
+          <span class="error-message" id="email-error"></span>
+      
+          <!-- Phone -->
+          <label for="phone">Phone Number/Telegram (For club meeting information) *</label>
+          <div class="phone-container">
+            <span class="phone-prefix">+855</span>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="12345678"
+              required
+            >
+          </div>
+          <span class="error-message" id="phone-error"></span>
+      
+          <!-- Terms & Conditions -->
+          <div class="terms">
+            <p class="terms-main-title"><strong>TERMS &amp; CONDITIONS *</strong></p>
+            <p><strong>Attendance Requirement</strong></p>
+            <ul>
+              <li>To claim extracurricular points, students must attend at least 10 hours of meeting time.</li>
+              <li>Active participation contributes to the club's success.</li>
+            </ul>
+            <p><strong>Bringing Guests to the Court</strong></p>
+            <ul>
+              <li>Guests are not allowed in our badminton club.</li>
+            </ul>
+          </div>
+      
+          <!-- Photo Upload -->
+          <label for="photo">Please submit your photo (For facial recognition) *</label>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+            required
+          >
+          <span class="error-message" id="photo-error"></span>
+      
+          <!-- Submit -->
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+      
+      
+  </div>
+
+  <footer>
+    <p>© 2025 Membership & Attendance System. All rights reserved.</p>
+  </footer>
+</body>
+</html>

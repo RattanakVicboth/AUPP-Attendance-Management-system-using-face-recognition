@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership &amp; AUPP Attendance Management System</title>
+
+  <link rel="stylesheet" 
+    href="{{ url_for('static', filename='css/style.css') }}"
+  >
+
+  <script 
+    src="{{ url_for('static', filename='js/script.js') }}"defer>
+  </script>
+  <script 
+    src="{{ url_for('static', filename='js/attendance.js') }}" defer>
+  </script>
+</head>
+
+<body class="membership">
+  <header>
+    <div class="header-container">
+      <img
+        src="{{ url_for('static', filename='images/logo1.png') }}"
+        alt="AUPP Badminton Club Logo"
+        class="logo"
+      >
+      <div class="header-text">
+        <h1>AUPP Attendance Management System</h1>
+      </div>
+      
+      <!-- Social Media Icon -->
+      <div class="header-social-icons">
+        <a href="#" class="header-social-icon">
+          <img
+            src="{{ url_for('static', filename='images/facebook.png') }}"
+            alt="Facebook"
+          >
+        </a>
+        <a href="#" class="header-social-icon">
+          <img
+            src="{{ url_for('static', filename='images/instagram.png') }}"
+            alt="Instagram"
+          >
+        </a>
+        <a href="#" class="header-social-icon">
+          <img
+            src="{{ url_for('static', filename='images/telegram.png') }}"
+            alt="Telegram"
+          >
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('membership') }}" class="active">Membership</a>
+      <a href="{{ url_for('register_page') }}">Register</a>
+      <a href="{{ url_for('faq') }}">FAQ</a>
+    </nav>
+  </header>
+
+  <!-- Hero section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Track Your Attendance</h1>
+      <p>Use our facial recognition system to easily log your attendance and track your membership status.</p>
+        </button>
+        <button class="cta-button" onclick="openAdminLogin()">
+          Start Tracking Your Attendance
+        </button>   
+    </div>
+  </section>
+
+<!-- Admin Login Modal -->
+<div id="adminLoginModal" class="modal">
+  <div class="modal-content">
+    <h2>Admin Login</h2>
+    <p>Only admin can access the system. Please login below:</p>
+    <input type="text" id="adminUsername" placeholder="Username">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <div class="modal-buttons">
+      <button onclick="closeAdminLogin()">Back</button>
+      <button onclick="checkAdminLogin()">Login as Admin</button>
+    </div>
+    <p id="loginError" style="color: red; display: none;">
+      Incorrect username or password.
+    </p>
+  </div>
+</div>
+
+
+  <!-- Features -->
+  <section class="features">
+    <h2>Our Features</h2>
+    <div class="content">
+      <div class="feature-card">
+        <img
+          src="{{ url_for('static', filename='images/facial_rec.png') }}"
+          alt="Facial Recognition"
+          class="feature-icon"
+        >
+        <h3>Facial Recognition</h3>
+        <p>Our system uses AI to track attendance with 98% accuracy.</p>
+      </div>
+      <div class="feature-card">
+        <img
+          src="{{ url_for('static', filename='images/member_management.png') }}"
+          alt="Member Management"
+          class="feature-icon"
+        >
+        <h3>Member Management</h3>
+        <p>Efficiently manage member roles, status, and achievements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Members -->
+  <section id="members">
+    <h2>Our Members</h2>
+    <div class="member-grid">
+      <div class="member-card">
+        <img
+          src="{{ url_for('static', filename='images/both.JPG') }}"
+          alt="RattanakVichboth HENG"
+          class="member-img"
+        >
+        <h3>HENG RattanakVichboth<br>(Project Lead)</h3>
+        <p>Classification: Senior</p>
+        <p>Department: School of Digital Technologies (ICT)</p>
+      </div>
+      <div class="member-card">
+        <img
+          src="{{ url_for('static', filename='images/ta.jpg') }}"
+          alt="Socheata THY"
+          class="member-img"
+        >
+        <h3>THY Socheata<br>(Technical | Research Lead)</h3>
+        <p>Classification: Senior</p>
+        <p>Department: School of Digital Technologies (ICT)</p>
+      </div>
+      <div class="member-card">
+        <img
+          src="{{ url_for('static', filename='images/msrath.png') }}"
+          alt="Monyrath BUNTOUN"
+          class="member-img"
+        >
+        <h3>Prof, BUNTOUN Monyrath  <br>(Project Supervisor)</h3>
+        <p>Classification: Instructor</p>
+        <p>Academic Affairs - School of Digital Technologies</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <!-- <section id="testimonials">
+    <h2>What Our Members Say</h2>
+    <div class="testimonial-container">
+        <div class="testimonial">
+            <p>"As a busy organization, we needed a reliable and quick attendance solution. The facial recognition system works perfectly for us, every time."</p>
+            <p><strong>Ly Kawin</strong>, Club Leader</p>
+        </div>
+        <div class="testimonial">
+            <p>"An amazing system that saves us time and effort while ensuring accurate attendance tracking."</p>
+            <p><strong>Lin Chenny</strong>, Member</p>
+        </div>
+    </div>
+</section> -->
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 AUPP Attendance Management System. All rights reserved.</p>
+  </footer>

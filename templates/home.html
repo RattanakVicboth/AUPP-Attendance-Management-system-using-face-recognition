@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUPP Badminton Club</title>
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <!-- JS -->
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}"
+        defer
+    ></script>
+    <script
+        src="{{ url_for('static', filename='js/faq.js') }}"
+        defer
+    ></script>
+</head>
+
+<body class="home">
+    <header>
+        <div class="header-container">
+            <img
+            src="{{ url_for('static', filename='images/logo1.png') }}"
+            alt="AUPP Badminton Club Logo"
+            class="logo"
+            >            
+            <div class="header-text">
+                <h1>AUPP BADMINTON CLUB</h1>
+            </div>
+    
+            <div class="header-social-icons">
+                <a href="#" class="header-social-icon">
+                    <img
+                    src="{{ url_for('static', filename='images/facebook.png') }}"
+                    alt="Facebook"
+                    >
+                </a>
+                <a href="#" class="header-social-icon">
+                    <img
+                    src="{{ url_for('static', filename='images/instagram.png') }}"
+                    alt="Instagram"
+                    >
+                </a>
+                <a href="#" class="header-social-icon">
+                    <img
+                    src="{{ url_for('static', filename='images/telegram.png') }}"
+                    alt="Telegram"
+                    >
+                </a>
+            </div>
+        </div>
+    
+        <nav class="main-nav">
+            <a href="{{ url_for('home') }}" class="active">Home</a>
+            <a href="{{ url_for('membership') }}">Membership</a>
+            <a href="{{ url_for('register_page') }}">Register</a>
+            <a href="{{ url_for('faq') }}">FAQ</a>
+        </nav>
+    </header>    
+    
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1>Welcome to AUPP Badminton Club</h1>
+            <p>Join a community of champions - <br>Improve your skills and make lasting memories.</p>
+            <a
+            href="{{ url_for('register_page') }}"
+            class="cta-button"
+            >Join Now
+            </a>        
+        </div>
+    </section>    
+
+    <main>
+        <section>
+            <h2>Why Join Us?</h2>
+            <div class="content">
+                <div class="card">
+                    <h3>🏸 About Us</h3>
+                    <p>Discover our mission, leadership and how we help students thrive.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>📅 Events</h3>
+                    <p>Check out our upcoming tournaments, social events and training sessions.</p>
+                </div>
+                
+                <a href="{{ url_for('membership') }}" class="card">
+                    <h3>🎟️ Membership</h3>
+                    <p>Learn about our membership benefits and how to join.</p>
+                </a>    
+            </div>            
+        </section>    
+
+        <section id="gallery">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <div>
+                  <img
+                    src="{{ url_for('static', filename='images/team.jpeg') }}"
+                    alt="Team Spirit"
+                  >
+                  <p class="caption">
+                    Team spirit in action: <br>
+                    AUPP Badminton Club at the University Games 2024.
+                  </p>
+                </div>
+                <div>
+                  <img
+                    src="{{ url_for('static', filename='images/medal.jpeg') }}"
+                    alt="Bronze Medal Moment"
+                  >
+                  <p class="caption">
+                    Proud moment: <br>
+                    Securing the bronze medal –<br>
+                    in the Mixed Doubles category.
+                  </p>
+                </div>
+                <div>
+                  <img
+                    src="{{ url_for('static', filename='images/success.jpeg') }}"
+                    alt="Celebrating Success"
+                  >
+                  <p class="caption">
+                    Celebrating success: <br>
+                    Representing excellence and sportsmanship.
+                  </p>
+                </div>
+            </div>              
+        </section>
+    </main>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-details">
+            <p>Email: <a href="mailto:auppbadmintonclub@gmail.com" class="email-link">auppbadmintonclub@gmail.com</a></p>
+            <p>Stay connected with us on social media for the latest updates!</p>
+        </div>
+    
+        <div class="social-icons">
+            <a href="#" class="social-icon">
+              <img
+                src="{{ url_for('static', filename='images/facebook.png') }}"
+                alt="Facebook"
+              >
+            </a>
+            <a href="#" class="social-icon">
+              <img
+                src="{{ url_for('static', filename='images/instagram.png') }}"
+                alt="Instagram"
+              >
+            </a>
+            <a href="#" class="social-icon">
+              <img
+                src="{{ url_for('static', filename='images/telegram.png') }}"
+                alt="Telegram"
+              >
+            </a>
+        </div>          
+    </section>   
+
+    <footer>
+      <p>© 2025 Membership & Attendance System. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

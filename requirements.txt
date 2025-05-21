@@ -1,0 +1,13 @@
+flask
+flask-cors
+flask-mail
+python-dotenv
+opencv-python
+face_recognition
+numpy
+pandas
+Pillow
+pillow
+werkzeug
+python-dateutil
+gunicorn

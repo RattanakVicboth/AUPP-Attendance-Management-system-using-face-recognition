@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - AUPP Attendance Management System</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/contact-us.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body class="faq">
+    <header>
+      <div class="header-container">
+        <img
+          src="{{ url_for('static', filename='images/logo1.png') }}"
+          alt="AUPP Badminton Club Logo"
+          class="logo"
+        />
+        <div class="header-text">
+          <h1>Frequently Asked Questions</h1>
+        </div>
+        <div class="header-social-icons">
+          <a href="#" class="header-social-icon">
+            <img
+              src="{{ url_for('static', filename='images/facebook.png') }}"
+              alt="Facebook"
+            />
+          </a>
+          <a href="#" class="header-social-icon">
+            <img
+              src="{{ url_for('static', filename='images/instagram.png') }}"
+              alt="Instagram"
+            />
+          </a>
+          <a href="#" class="header-social-icon">
+            <img
+              src="{{ url_for('static', filename='images/telegram.png') }}"
+              alt="Telegram"
+            />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('membership') }}">Membership</a>
+      <a href="{{ url_for('register_page') }}">Register</a>
+      <a href="{{ url_for('faq') }}" class="active">Contact Us</a>
+    </nav>
+
+    <!-- FAQ Section -->
+
+    <div class="container" style="background-color: white; padding: 0px">
+      <section>
+        <div class="container">
+          <!-- display flash messages -->
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %}
+          <div class="row">
+            <div class="col-md-9 col-sm-8">
+              {% for category, msg in messages %}
+              <div class="alert alert-{{ category }}">{{ msg }}</div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %} {% endwith %}
+
+          <div class="row">
+            <!-- Contact Form -->
+            <div class="col-md-9 col-sm-8">
+              <div class="contact_form1">
+                <h1>Send Us A Message</h1>
+                <p>
+                  Whether you’re looking for answers, would like to solve a
+                  problem, or just want to let us know how we did, you’ll find
+                  many ways to contact us right here.
+                </p>
+                <form action="{{ url_for('send_message') }}" method="POST">
+                  <div class="row contact_form">
+                    <div class="col-sm-6">
+                      <label>Your Name <span>*</span></label>
+                      <input type="text" name="name" required />
+                      <label>Your E‑Mail <span>*</span></label>
+                      <input type="email" name="email" required />
+                      <label>Your Phone <span>*</span></label>
+                      <input type="tel" name="phone" required />
+                    </div>
+                    <div class="col-sm-6">
+                      <label>Message <span>*</span></label>
+                      <textarea
+                        name="message"
+                        cols="30"
+                        rows="10"
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div style="text-align: right">
+                    <input type="submit" value="Send Message" class="rm_btn" />
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="col-md-3 col-sm-4">
+              <div class="contact_details">
+                <h1>Contact Details</h1>
+                <ul>
+                  <li>
+                    <div
+                      class="col-xs-2 fix_p"
+                      style="
+                        padding-left: 0;
+                        padding-right: 10px;
+                        padding-top: 5px;
+                      "
+                    >
+                      <img
+                        src="{{ url_for('static', filename='images/icn-call.png') }}"
+                        alt="Call Icon"
+                      />
+                    </div>
+                    <div class="col-md-8 col-xs-10" style="padding-left: 0">
+                      <a href="tel:+85512897559" style="color: #3c598e"
+                        >+855 12 897 559</a
+                      ><br />
+                      <a href="tel:+85512456997" style="color: #3c598e"
+                        >+855 12 456 997</a
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div class="col-xs-2 fix_p" style="padding-left: 0">
+                      <img
+                        src="{{ url_for('static', filename='images/icn-loc.png') }}"
+                        alt="Location Icon"
+                      />
+                    </div>
+                    <div class="col-md-8 col-xs-10" style="padding-left: 0">
+                      Phnom Penh, Cambodia
+                    </div>
+                  </li>
+                  <li>
+                    <div class="col-xs-2 fix_p" style="padding-left: 0">
+                      <img
+                        src="{{ url_for('static', filename='images/icn-maps.png') }}"
+                        alt="Map Icon"
+                      />
+                    </div>
+                    <!-- embedded map -->
+                    <!-- Link -->
+                    <div class="col-md-8 col-xs-10" style="padding-left: 0">
+                      <a
+                        href="https://maps.app.goo.gl/GfHWY1TXaMjUE8yG6"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style="color: #3c598e"
+                      >
+                        <strong>Check Our Location</strong>
+                      </a>
+
+                      <!-- Embed the map right below the link -->
+                      <div class="map-container" style="margin-top: 15px">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.1030889006124!2d104.89837077559069!3d11.61600008858851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095177ee61fd7d%3A0xa66cfdf83a58b2ae!2sAmerican%20University%20of%20Phnom%20Penh!5e0!3m2!1sen!2sus!4v1746517446647!5m2!1sen!2sus"
+                          width="130%"
+                          height="300%"
+                          style="border: 0"
+                          allowfullscreen=""
+                          loading="lazy"
+                          referrerpolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="col-xs-2 fix_p" style="padding-left: 0">
+                      <img
+                        src="{{ url_for('static', filename='images/icn-mail.png') }}"
+                        alt="Mail Icon"
+                      />
+                    </div>
+                    <div class="col-md-8 col-xs-10" style="padding-left: 0">
+                      <a
+                        href="mailto:2022133heng@aupp.edu.kh"
+                        style="color: #3c598e"
+                      >
+                        <strong>2022133heng@aupp.edu.kh</strong>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- End Contact Form -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>© 2025 Membership & Attendance System. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/faq.js') }}" defer></script>
+  </body>
+</html>

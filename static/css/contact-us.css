@@ -1,0 +1,96 @@
+.header-area {
+    background: url('../images/contactusbg.png');
+    background-position: center;
+    background-size: cover;
+    
+    height: 60vh;
+	background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+
+/* --------------------------------------------------------
+Contact Page
+-----------------------------------------------------------*/
+.contact_form{
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+}
+.contact_form1 h1{
+    color: #222222;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 20px;
+}
+.contact_form1 p{
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    line-height: 28px;
+    margin-bottom: 37px;
+    margin-right: 10px;
+}
+
+p{
+    font-family: 'Lato', sans-serif;
+    
+}
+.contact_form label, .contact_form input{
+    display: block;
+}
+.contact_form input, .contact_form textarea{
+    width: 100%;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    text-indent: 15px;
+}
+.contact_form label{
+    font-size: 13px;
+    font-family: 'latomedium';
+    color: #777777;
+}
+.contact_form label span{
+    color: #ff0000;
+}
+.contact_form input{
+    height: 42px;
+    line-height: 42px;
+    margin-bottom: 21px;
+    margin-top: 4px;
+}
+.contact_form textarea{
+    height: 216px;
+    padding-top: 10px;
+}
+.contact_details h1{
+    margin-bottom: 30px;
+    color: #222222;
+}
+.contact_details ul{
+    display: inline;
+}
+.contact_details ul li{
+    overflow: hidden;
+    display: block;
+    color: #777777;
+    margin-bottom: 34px;
+}
+.contact_details ul li i{
+    border: 1px solid;
+    border-radius: 50%;
+    font-size: 21px;
+    padding: 10px;
+    color: #272727;
+}
+.contact_details ul li a{
+    display: block;
+    color: #777777;
+    font-size: 16px;
+}
+.contact_details ul li a:hover{
+    color: #fb6d93;
+}
+.contact_form_side form  input[type="submit"]{
+    border: 0px;
+    margin-top: 15px;
+}
+
