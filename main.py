@@ -411,7 +411,7 @@ def create_main_window():
     
     # Try to load the logo image
     try:
-        logo_image = Image.open("static/images/logo.png")
+        logo_image = Image.open("static/images/logo1.png")
         logo_image = logo_image.resize((80, 80))
         logo_image_tk = ImageTk.PhotoImage(logo_image)
         

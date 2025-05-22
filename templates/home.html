@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUPP Badminton Club</title>
+    <title>AUPP Attendance Management System</title>
     <!-- CSS -->
     <link
         rel="stylesheet"
@@ -26,11 +26,11 @@
         <div class="header-container">
             <img
             src="{{ url_for('static', filename='images/logo1.png') }}"
-            alt="AUPP Badminton Club Logo"
+            alt="AUPP Logo"
             class="logo"
             >            
             <div class="header-text">
-                <h1>AUPP BADMINTON CLUB</h1>
+                <h1>AUPP Attendance Management System</h1>
             </div>
     
             <div class="header-social-icons">
@@ -59,112 +59,45 @@
             <a href="{{ url_for('home') }}" class="active">Home</a>
             <a href="{{ url_for('membership') }}">Membership</a>
             <a href="{{ url_for('register_page') }}">Register</a>
-            <a href="{{ url_for('faq') }}">FAQ</a>
+            <a href="{{ url_for('faq') }}">Contact Us</a>
         </nav>
     </header>    
     
     <section class="hero">
         <div class="hero-overlay">
-            <h1>Welcome to AUPP Badminton Club</h1>
-            <p>Join a community of champions - <br>Improve your skills and make lasting memories.</p>
+            <h1>Welcome to AUPP Attendance Management System</h1>
+            <p><b>Upload your images</b><br>Input your name, student ID, email, and phone number.</p>
             <a
             href="{{ url_for('register_page') }}"
             class="cta-button"
-            >Join Now
+            >Register Now
             </a>        
         </div>
     </section>    
 
     <main>
         <section>
-            <h2>Why Join Us?</h2>
+            <h2>Why We Using Face Recognition?</h2>
             <div class="content">
                 <div class="card">
-                    <h3>🏸 About Us</h3>
-                    <p>Discover our mission, leadership and how we help students thrive.</p>
+                    <h3>❌ Faking Attendance</h3>
+                    <p>Prevents people from faking attendance, student can make mistakes or pretending to be present for others.</p>
                 </div>
                 
                 <div class="card">
-                    <h3>📅 Events</h3>
-                    <p>Check out our upcoming tournaments, social events and training sessions.</p>
+                    <h3>👥 Large Lectures</h3>
+                    <p> Takes a lot of time and effort to handle manually, voice roll-call becomes impractical in large lectures.</p>
                 </div>
                 
-                <a href="{{ url_for('membership') }}" class="card">
-                    <h3>🎟️ Membership</h3>
-                    <p>Learn about our membership benefits and how to join.</p>
-                </a>    
+                <div class="card">
+                    <h3>✅ Detect and Recognize</h3>
+                    <p> Detect & recognize person at the same time, saves time with automatic attendance marking.</p>
+                </div>   
             </div>            
         </section>    
-
-        <section id="gallery">
-            <h2>Gallery</h2>
-            <div class="gallery">
-                <div>
-                  <img
-                    src="{{ url_for('static', filename='images/team.jpeg') }}"
-                    alt="Team Spirit"
-                  >
-                  <p class="caption">
-                    Team spirit in action: <br>
-                    AUPP Badminton Club at the University Games 2024.
-                  </p>
-                </div>
-                <div>
-                  <img
-                    src="{{ url_for('static', filename='images/medal.jpeg') }}"
-                    alt="Bronze Medal Moment"
-                  >
-                  <p class="caption">
-                    Proud moment: <br>
-                    Securing the bronze medal –<br>
-                    in the Mixed Doubles category.
-                  </p>
-                </div>
-                <div>
-                  <img
-                    src="{{ url_for('static', filename='images/success.jpeg') }}"
-                    alt="Celebrating Success"
-                  >
-                  <p class="caption">
-                    Celebrating success: <br>
-                    Representing excellence and sportsmanship.
-                  </p>
-                </div>
-            </div>              
-        </section>
     </main>
-
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <div class="contact-details">
-            <p>Email: <a href="mailto:auppbadmintonclub@gmail.com" class="email-link">auppbadmintonclub@gmail.com</a></p>
-            <p>Stay connected with us on social media for the latest updates!</p>
-        </div>
-    
-        <div class="social-icons">
-            <a href="#" class="social-icon">
-              <img
-                src="{{ url_for('static', filename='images/facebook.png') }}"
-                alt="Facebook"
-              >
-            </a>
-            <a href="#" class="social-icon">
-              <img
-                src="{{ url_for('static', filename='images/instagram.png') }}"
-                alt="Instagram"
-              >
-            </a>
-            <a href="#" class="social-icon">
-              <img
-                src="{{ url_for('static', filename='images/telegram.png') }}"
-                alt="Telegram"
-              >
-            </a>
-        </div>          
-    </section>   
-
     <footer>
-      <p>© 2025 Membership & Attendance System. All rights reserved.</p>
+    <p>© 2025 AUPP Attendance Management System. All rights reserved.</p>
     </footer>
 
 </body>

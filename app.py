@@ -19,41 +19,36 @@ from db.connection import get_db_connection
 # Load environment variables
 load_dotenv()
 
-# ——— Config ———
+# Config
 IMG_DIR = os.getenv("IMG_DIR", "ImagesAttendance")
 ATTENDANCE_CSV = os.getenv("ATTENDANCE_CSV", "AttendanceSheet.csv")
 MEMBERS_CSV = os.getenv("MEMBERS_CSV", "Members.csv")
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
-# Create Flask app
 app = Flask(__name__, static_folder="static", static_url_path="", template_folder="templates")
 CORS(app)
-
-# Secret key for sessions/flash
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "dev-fallback-secret-key")
 
 # Mail configuration
 app.config.update(
     MAIL_SERVER=os.getenv("MAIL_SERVER", "smtp.gmail.com"),
     MAIL_PORT=int(os.getenv("MAIL_PORT", 587)),
-    MAIL_USE_TLS=os.getenv("MAIL_USE_TLS", "true").lower() in ("true","1","yes"),
+    MAIL_USE_TLS=os.getenv("MAIL_USE_TLS", "true").lower() in ("true", "1", "yes"),
     MAIL_USERNAME=os.getenv("MAIL_USERNAME"),
     MAIL_PASSWORD=os.getenv("MAIL_PASSWORD"),
-    MAIL_DEFAULT_SENDER=tuple(os.getenv("MAIL_DEFAULT_SENDER", "AUPP Attendance System contact form,no-reply@auppcontactform.com").split(",",1))
+    MAIL_DEFAULT_SENDER=tuple(os.getenv("MAIL_DEFAULT_SENDER", "AUPP Attendance,no-reply@aupp.edu.kh").split(",", 1))
 )
 mail = Mail(app)
 
-# ——— Globals ———
+# Globals
 KNOWN_ENCODINGS = []
 CLASS_NAMES = []
 
-# ——— Helpers ———
+# Helpers
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
 def load_known_faces():
-    """Load and encode all images in IMG_DIR."""
     KNOWN_ENCODINGS.clear()
     CLASS_NAMES.clear()
     os.makedirs(IMG_DIR, exist_ok=True)
@@ -70,22 +65,16 @@ def load_known_faces():
             KNOWN_ENCODINGS.append(encs[0])
             CLASS_NAMES.append(os.path.splitext(fname)[0])
 
-
 def ensure_csv(path, header):
-    """Ensure a CSV exists with the given header."""
     if not os.path.exists(path):
         pd.DataFrame(columns=header).to_csv(path, index=False)
 
-
 def ensure_data_files():
-    """Setup attendance & members CSVs if they don't exist."""
     weeks = [f"Week {i}" for i in range(1, 14)]
     ensure_csv(ATTENDANCE_CSV, ["Name"] + weeks)
     ensure_csv(MEMBERS_CSV, ["Name", "StudentID", "Email", "Phone", "PhotoFilename"])
 
-
 def mark_attendance(name, week):
-    """Mark or create attendance entry for a given week."""
     df = pd.read_csv(ATTENDANCE_CSV)
     now = datetime.now().strftime("%H:%M:%S")
     if name in df["Name"].values:
@@ -95,16 +84,13 @@ def mark_attendance(name, week):
             df.to_csv(ATTENDANCE_CSV, index=False)
             return {"new": False, "time": now}
         return {"already": True}
-    # new entry
     row = {c: "" for c in df.columns}
     row["Name"], row[week] = name, now
     df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
     df.to_csv(ATTENDANCE_CSV, index=False)
     return {"new": True, "time": now}
 
-
 def delete_attendance(name):
-    """Delete all attendance records for a member."""
     df = pd.read_csv(ATTENDANCE_CSV)
     if name in df["Name"].values:
         df = df[df["Name"] != name]
@@ -112,7 +98,7 @@ def delete_attendance(name):
         return True
     return False
 
-# ——— Page Routes ———
+# Page Routes
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -143,132 +129,125 @@ def verify_admin():
                     return jsonify({'status':'success'})
     return jsonify({'status':'fail'})
 
-# ——— API: Registration ———
 @app.route("/api/register", methods=["POST"])
 def api_register():
-    name = request.form.get("name","").strip()
-    student_id = request.form.get("student_id","").strip()
-    email = request.form.get("email","").strip()
-    phone = request.form.get("phone","").strip()
+    name = request.form.get("name", "").strip()
+    student_id = request.form.get("student_id", "").strip()
+    email = request.form.get("email", "").strip()
+    phone = request.form.get("phone", "").strip()
     photo = request.files.get("photo")
 
-    # validate presence
-    if not all([name,student_id,email,phone,photo]):
-        return jsonify(error="Missing fields"),400
-    # regex validation
+    if not all([name, student_id, email, phone, photo]):
+        return jsonify(error="Missing fields"), 400
+
     errors = {}
-    if not re.match(r'^[a-zA-Z\s]+$',name): errors['name']='Letters/spaces only'
-    if not re.match(r'^[0-9]{1,8}$',student_id): errors['student_id']='Up to 8 digits'
-    if not re.match(r'^[A-Za-z0-9._%+-]+@aupp\.edu\.kh$',email): errors['email']='Invalid AUPP email'
-    if not re.match(r'^[0-9]{8,9}$',phone): errors['phone']='8-9 digits'
-    if photo and not allowed_file(photo.filename): errors['photo']='Invalid file type'
-    if errors: return jsonify(error="Validation failed",details=errors),400
+    if not re.match(r'^[a-zA-Z\s]+$', name): errors['name'] = 'Letters/spaces only'
+    if not re.match(r'^[0-9]{1,8}$', student_id): errors['student_id'] = 'Up to 8 digits'
+    if not re.match(r'^[A-Za-z0-9._%+-]+@aupp\.edu\.kh$', email): errors['email'] = 'Invalid AUPP email'
+    if not re.match(r'^[0-9]{8,9}$', phone): errors['phone'] = '8-9 digits'
+    if photo and not allowed_file(photo.filename): errors['photo'] = 'Invalid file type'
+    if errors: return jsonify(error="Validation failed", details=errors), 400
 
-    # rename file to Name+ID
-    os.makedirs(IMG_DIR,exist_ok=True)
-    _,ext = os.path.splitext(photo.filename)
-    safe = secure_filename(name.replace(" ",""))
+    os.makedirs(IMG_DIR, exist_ok=True)
+    _, ext = os.path.splitext(photo.filename)
+    safe = secure_filename(name.replace(" ", ""))
     filename = f"{safe}{student_id}{ext}"
-    # face check
-    buf = np.frombuffer(photo.read(),np.uint8)
-    img = cv2.imdecode(buf,cv2.IMREAD_COLOR)
-    if img is None: return jsonify(error="Invalid image"),400
-    encs = face_recognition.face_encodings(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
-    if not encs: return jsonify(error="No face detected"),400
-    photo.stream.seek(0)
-    path = os.path.join(IMG_DIR,filename)
-    photo.save(path)
 
-    # DB insert
+    buf = np.frombuffer(photo.read(), np.uint8)
+    img = cv2.imdecode(buf, cv2.IMREAD_COLOR)
+    if img is None:
+        return jsonify(error="Invalid image"), 400
+    encs = face_recognition.face_encodings(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    if not encs:
+        return jsonify(error="No face detected"), 400
+
+    photo.stream.seek(0)
+    photo.save(os.path.join(IMG_DIR, filename))
+
     conn = get_db_connection()
     try:
         with conn.cursor() as cur:
-            cur.execute("INSERT INTO users (name,student_id,email,phone,photo) VALUES (%s,%s,%s,%s,%s)",
-                        (name,student_id,email,phone,filename))
+            cur.execute("INSERT INTO users (name, student_id, email, phone, photo) VALUES (%s,%s,%s,%s,%s)",
+                        (name, student_id, email, phone, filename))
         conn.commit()
     except Exception as e:
         conn.rollback()
-        return jsonify(error=f"DB error: {e}"),500
+        return jsonify(error=f"DB error: {e}"), 500
     finally:
         conn.close()
 
     KNOWN_ENCODINGS.append(encs[0])
     CLASS_NAMES.append(f"{safe}{student_id}")
-    return jsonify(message="Registration successful"),200
+    return jsonify(message="Registration successful"), 200
 
-# ——— Contact Form ———
+@app.route("/api/check_face", methods=["POST"])
+def api_check_face():
+    photo = request.files.get("photo")
+    if not photo:
+        return jsonify(error="No photo uploaded"), 400
+    buf = np.frombuffer(photo.read(), np.uint8)
+    img = cv2.imdecode(buf, cv2.IMREAD_COLOR)
+    if img is None:
+        return jsonify(error="Invalid image"), 400
+    encs = face_recognition.face_encodings(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    return jsonify(face_detected=bool(encs))
+
+@app.route("/api/mark", methods=["POST"])
+def api_mark():
+    if 'file' not in request.files or 'week' not in request.form:
+        return jsonify(error="Missing file/week"), 400
+    week = request.form['week']
+    data = np.frombuffer(request.files['file'].read(), np.uint8)
+    frame = cv2.imdecode(data, cv2.IMREAD_COLOR)
+    small = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+    encs = face_recognition.face_encodings(cv2.cvtColor(small, cv2.COLOR_BGR2RGB))
+    for f in encs:
+        d = face_recognition.face_distance(KNOWN_ENCODINGS, f)
+        if len(d) == 0:
+            continue
+        i = np.argmin(d)
+        if face_recognition.compare_faces([KNOWN_ENCODINGS[i]], f)[0]:
+            return jsonify(name=CLASS_NAMES[i], result=mark_attendance(CLASS_NAMES[i], week))
+    return jsonify(name=None, error="No match"), 200
+
+@app.route("/api/delete", methods=['POST'])
+def api_delete():
+    name = (request.get_json() or {}).get('name')
+    if not name:
+        return jsonify(error="No name"), 400
+    return jsonify(deleted=delete_attendance(name))
+
 @app.route('/send_message', methods=['POST'])
 def send_message():
-    name    = request.form['name'].strip()
-    email   = request.form['email'].strip()
-    phone   = request.form['phone'].strip()
-    text    = request.form['message'].strip()
+    name = request.form['name'].strip()
+    email = request.form['email'].strip()
+    phone = request.form['phone'].strip()
+    text = request.form['message'].strip()
 
-    body = f"""You have a new message from the AUPP Attendance System Contact Form:
+    body = f"""You have a new message from the AUPP Attendance System Contact Form:\n\nName: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{text}"""
 
-Name:  {name}
-Email: {email}
-Phone: {phone}
-
-Message:
-{text}
-"""
-
-    # Load your recipient from env or fallback
     recipient = os.getenv('CONTACT_RECIP', '2022133heng@aupp.edu.kh')
-    msg = Message(
-        subject=f"AUPP Contact: {name}",
-        recipients=[recipient],
-        body=body
-    )
+    msg = Message(subject=f"AUPP Contact: {name}", recipients=[recipient], body=body)
     try:
         mail.send(msg)
         flash("Your message has been sent!", "success")
     except Exception as e:
         app.logger.error("Mail send error: %s", e)
         flash("Sorry, we couldn't send your message. Please try again later.", "danger")
-
     return redirect(url_for('faq'))
 
-# ——— API: Mark & Delete Attendance ———
-@app.route("/api/mark",methods=["POST"])
-def api_mark():
-    if 'file' not in request.files or 'week' not in request.form:
-        return jsonify(error="Missing file/week"),400
-    week=request.form['week']
-    data=np.frombuffer(request.files['file'].read(),np.uint8)
-    frame=cv2.imdecode(data,cv2.IMREAD_COLOR)
-    small=cv2.resize(frame,(0,0),fx=0.25,fy=0.25)
-    encs=face_recognition.face_encodings(cv2.cvtColor(small,cv2.COLOR_BGR2RGB))
-    for f in encs:
-        d=face_recognition.face_distance(KNOWN_ENCODINGS,f)
-        if len(d)==0: continue
-        i=np.argmin(d)
-        if face_recognition.compare_faces([KNOWN_ENCODINGS[i]],f)[0]:
-            return jsonify(name=CLASS_NAMES[i],result=mark_attendance(CLASS_NAMES[i],week))
-    return jsonify(name=None,error="No match"),200
-
-@app.route("/api/delete",methods=['POST'])
-def api_delete():
-    name=(request.get_json() or {}).get('name')
-    if not name: return jsonify(error="No name"),400
-    return jsonify(deleted=delete_attendance(name))
-
-# ——— Scanner Launcher ———
 @app.route("/start-scan")
 def start_scan():
     def run():
-        subprocess.Popen([sys.executable,os.path.join(os.path.dirname(__file__),"main.py")])
+        subprocess.Popen([sys.executable, os.path.join(os.path.dirname(__file__), "main.py")])
     threading.Thread(target=run).start()
     return "Launching scanner"
 
-# ——— Startup ———
 if __name__ == "__main__":
-    os.makedirs(IMG_DIR,exist_ok=True)
+    os.makedirs(IMG_DIR, exist_ok=True)
     load_known_faces()
     ensure_data_files()
-    # database table creation
-    conn=get_db_connection()
+    conn = get_db_connection()
     with conn.cursor() as cur:
         cur.execute("SHOW TABLES LIKE 'users'")
         if not cur.fetchone():
@@ -281,8 +260,7 @@ if __name__ == "__main__":
                 phone VARCHAR(20) NOT NULL,
                 photo VARCHAR(255) NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-            """)
+            )""")
             conn.commit()
     conn.close()
     app.run(debug=True)

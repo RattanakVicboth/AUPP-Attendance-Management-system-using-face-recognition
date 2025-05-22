@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUPP Badminton Club Registration</title>
+  <title>AUPP Attendance Management System</title>
 
   <!-- CSS -->
   <link
@@ -23,7 +23,7 @@
         <!-- Logo -->
         <img
           src="{{ url_for('static', filename='images/logo1.png') }}"
-          alt="AUPP Badminton Club Logo"
+          alt="AUPP Logo"
           class="logo"
         >
         <div class="header-text">
@@ -58,12 +58,12 @@
         <a href="{{ url_for('home') }}">Home</a>
         <a href="{{ url_for('membership') }}">Membership</a>
         <a href="{{ url_for('register_page') }}" class="active">Register</a>
-        <a href="{{ url_for('faq') }}">FAQ</a>
+        <a href="{{ url_for('faq') }}">Contact Us</a>
       </nav>
     </header>
 
     <div class="form-container">
-        <h2>AUPP Badminton Club (Spring 2025)</h2>
+        <h2>INFO 653 001 - Web Development III<br>(Spring 2025)</h2>
         <p class="form-subtitle">📝 Registration Form</p>
       
         <!-- Form posts to Flask registration endpoint -->
@@ -80,7 +80,7 @@
             type="text"
             id="name"
             name="name"
-            placeholder="John Doe"
+            placeholder="RattanakVichboth HENG"
             required
           >
           <span class="error-message" id="name-error"></span>
@@ -102,13 +102,13 @@
             type="email"
             id="email"
             name="email"
-            placeholder="doe2@aupp.edu.kh"
+            placeholder="2022133heng@aupp.edu.kh"
             required
           >
           <span class="error-message" id="email-error"></span>
       
           <!-- Phone -->
-          <label for="phone">Phone Number/Telegram (For club meeting information) *</label>
+          <label for="phone">Phone Number/Telegram</label>
           <div class="phone-container">
             <span class="phone-prefix">+855</span>
             <input
@@ -124,14 +124,18 @@
           <!-- Terms & Conditions -->
           <div class="terms">
             <p class="terms-main-title"><strong>TERMS &amp; CONDITIONS *</strong></p>
-            <p><strong>Attendance Requirement</strong></p>
+            <p><strong>Attendance Tracking</strong></p>
             <ul>
-              <li>To claim extracurricular points, students must attend at least 10 hours of meeting time.</li>
-              <li>Active participation contributes to the club's success.</li>
+              <li>By registering, you consent to the use of facial recognition technology to track your attendance.</li>
+              <li>Attendance is recorded when the system detects a clear match of your registered facial data.</li>
+              <li>If your face is not detected or mismatched due to lighting, attire, or angle, you must notify the admin immediately.</li>
+
             </ul>
-            <p><strong>Bringing Guests to the Court</strong></p>
+            <p><strong>Privacy & Data Use</strong></p>
             <ul>
-              <li>Guests are not allowed in our badminton club.</li>
+              <li>Your personal data (name, student ID, email, phone number, and facial image) is collected solely for attendance purposes.</li>
+              <li>Data will not be shared with third parties and is stored securely in accordance with institutional data protection policies.</li>
+              <li>You can request deletion of your data from the system by contacting the system administrator.</li>
             </ul>
           </div>
       
