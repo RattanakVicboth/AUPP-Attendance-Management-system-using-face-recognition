@@ -1,0 +1,43 @@
+USE attendance;
+
+-- 1) Create the members (users) table
+CREATE TABLE users (
+  `id`            INT            NOT NULL AUTO_INCREMENT,
+  `name`          VARCHAR(100)   NOT NULL,
+  `student_id`    VARCHAR(20)    NOT NULL,
+  `email`         VARCHAR(100)   NOT NULL,
+  `phone`         VARCHAR(20)    NOT NULL,
+  `photo`         VARCHAR(255)   NOT NULL,
+  `created_at`    TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`student_id`),
+  UNIQUE KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 2) Create the attendance table
+CREATE TABLE attendance (
+  `id`         INT        NOT NULL AUTO_INCREMENT,
+  `user_id`    INT        NOT NULL,
+  `week`       TINYINT    NOT NULL COMMENT '1–13',
+  `marked_at`  DATETIME   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_user_week` (`user_id`, `week`),
+  CONSTRAINT `fk_attendance_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users`(`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 3) (Optional) A simple query to pull the full attendance sheet:
+SELECT
+  u.student_id,
+  u.name,
+  a.week,
+  a.marked_at
+FROM
+  users AS u
+LEFT JOIN
+  attendance AS a ON u.id = a.user_id
+ORDER BY
+  u.name, a.week;
